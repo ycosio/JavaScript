@@ -8,15 +8,18 @@
 <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
 </head>
 <body onload="crearTablero();">
-<p>Tablero de juego</p>
-<table border="1" id="tablero" summary="Tablero">
+<center> <h1>Tablero de juego</h1> </center>
+
+<table border="0" id="tablero" summary="Tablero">
 	<caption>
-	    Haga click en una celda para inicializarla como viva
+	    Haga clic en una celda para inicializarla como viva
 	</caption>
 	
 </table>
-<button onclick="play(), 1000" id="button">Iniciar</button>
-<button onclick="juego=false" id="button">Detener</button>
+<div class="button">
+	<button onclick="play(), 1000" >Iniciar</button>
+	<button onclick="juego=false" >Detener</button>
+</div>
 <script type="text/javascript" src="general_scripts.js"></script>
 </body>
 </html>

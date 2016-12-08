@@ -14,3 +14,15 @@
 				background-color: black;				
 }
 
+#tablero{
+				margin: auto;
+				margin-top: 80px;	
+}
+
+.button{
+				margin: auto;
+				margin-top: 10px;
+				text-align: center;	
+}
+
+
