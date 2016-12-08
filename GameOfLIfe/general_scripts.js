@@ -18,17 +18,18 @@ $(function(){
 
 });
 
-var tablero = new Array(20);
 var juego = true;
+var filas = prompt("Numero de filas",20);
+var columnas = prompt("Numero de columans",20);
+var tablero = new Array(filas);
 
 function crearTablero(){
-
-	for (var i = 0; i < 20; i++) {
+	for (var i = 0; i < filas; i++) {
 		var fila = '<tr class="fila"> </tr>';
 		fila = $(fila);
-		tablero[i] = new Array(20);
+		tablero[i] = new Array(columnas);
 		var num = $("#tablero").append(fila);
-		for (var j = 0; j < 20; j++) {
+		for (var j = 0; j < columnas; j++) {
 			var celda = '<td id="'+i+','+j+'" class="Cell deadCell"> </td>';
 			celda = $(celda);
 			num.append(celda);
@@ -40,31 +41,31 @@ function crearTablero(){
 
 function play(){
 	juego=true;
-	var tableroTemporal = new Array(20);
-	for (var i = 0; i < 20; i++) {
-		tableroTemporal[i] = new Array(20);
+	var tableroTemporal = new Array(filas);
+	for (var i = 0; i < filas; i++) {
+		tableroTemporal[i] = new Array(columnas);
 	}
 
 	setTimeout(function () {
-		for (var f = 0; f < 20; f++) {
+		for (var f = 0; f < filas; f++) {
 			
-			for (var c = 0; c < 20; c++) {
+			for (var c = 0; c < columnas; c++) {
 				
 		        if (f == 0 && c == 0)
 		            var cells = [ tablero[f][c + 1], tablero[f + 1][c + 1], tablero[f + 1][c] ];
-		        else if (c == 0 && f!=19)
+		        else if (c == 0 && f!=filas-1)
 		            var cells = [ tablero[f][c + 1], tablero[f + 1][c + 1], tablero[f + 1][c], tablero[f - 1][c + 1], tablero[f - 1][c] ];
-		        else if (c == 0 && f == 19)
+		        else if (c == 0 && f == filas-1)
 		            var cells = [ tablero[f][c + 1], tablero[f - 1][c + 1], tablero[f - 1][c] ];
-		        else if (f == 0 && c!=19)
+		        else if (f == 0 && c!=columnas-1)
 		            var cells = [ tablero[f][c - 1], tablero[f][c + 1], tablero[f + 1][c - 1], tablero[f + 1][c + 1], tablero[f + 1][c] ];
-		        else if (f == 0 && c == 19)
+		        else if (f == 0 && c == columnas-1)
 		            var cells = [ tablero[f][c - 1], tablero[f + 1][c - 1], tablero[f + 1][c] ];
-		        else if (f == 19 && c == 19)
+		        else if (f == filas-1 && c == columnas-1)
 		            var cells = [ tablero[f][c - 1], tablero[f - 1][c - 1], tablero[f - 1][c] ];
-		        else if (c == 19)
+		        else if (c == columnas-1)
 		            var cells = [ tablero[f][c - 1], tablero[f + 1][c - 1], tablero[f + 1][c], tablero[f - 1][c - 1], tablero[f - 1][c] ];
-		        else if (f == 19)
+		        else if (f == filas-1)
 		        	var cells = [ tablero[f][c - 1], tablero[f][c + 1], tablero[f - 1][c - 1], tablero[f - 1][c + 1], tablero[f - 1][c] ];
 		        else
 		           	var cells = [ tablero[f][c - 1], tablero[f][c + 1], tablero[f + 1][c - 1], tablero[f + 1][c + 1], tablero[f + 1][c], tablero[f - 1][c - 1], tablero[f - 1][c + 1], tablero[f - 1][c] ];
