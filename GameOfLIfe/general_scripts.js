@@ -19,6 +19,7 @@ $(function(){
 });
 
 var tablero = new Array(20);
+var juego = true;
 
 function crearTablero(){
 
@@ -38,12 +39,13 @@ function crearTablero(){
 }
 
 function play(){
+	juego=true;
 	var tableroTemporal = new Array(20);
 	for (var i = 0; i < 20; i++) {
 		tableroTemporal[i] = new Array(20);
 	}
 
-	//while(true){
+	setTimeout(function () {
 		for (var f = 0; f < 20; f++) {
 			
 			for (var c = 0; c < 20; c++) {
@@ -77,37 +79,39 @@ function play(){
 	            }
 
 	            var id = "#"+f+","+c;
-	            
+
 	            //Reglas
 	            if (vivos < 2 && tablero[f][c])
 	            {
 	                tableroTemporal[f][c] = false;
-	                $("#"+f+","+c).removeClass("lifeCell").addClass("deadCell");
+	                document.getElementById(f+","+c).className = "Cell deadCell";
 	            }
 	            else if (((vivos == 2) || (vivos == 3)) && tablero[f][c]==true)
 	            {
 	                tableroTemporal[f][c] = true;
-	                $("#"+f+","+c).removeClass("deadCell").addClass("lifeCell");
+	                document.getElementById(f+","+c).className = "Cell lifeCell";
 	            }
 	            else if (vivos > 3 && tablero[f][c])
 	            {
 	                tableroTemporal[f][c] = false;
-	                $("#"+f+","+c).removeClass("lifeCell").addClass("deadCell");
+	                document.getElementById(f+","+c).className = "Cell deadCell";
 	            }
 	            else if (vivos >= 3 && !tablero[f][c])
 	            {
 	                tableroTemporal[f][c] = true;
-	                $("#"+f+","+c).removeClass("deadCell").addClass("lifeCell");
+	                document.getElementById(f+","+c).className = "Cell lifeCell";
 	            }
 	            else
 	            {
 	                tableroTemporal[f][c] = false;
-	                $("#"+f+","+c).removeClass("lifeCell").addClass("deadCell");
+	                document.getElementById(f+","+c).className = "Cell deadCell";
 	            }
 			}
 		}
 
 		tablero = tableroTemporal;
-	//}
+		if(juego)
+			play();
+	}, 1000)
 }
 
